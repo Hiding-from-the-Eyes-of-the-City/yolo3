@@ -9,9 +9,9 @@ name file: .names
 '''
 
 # Load Yolo
-net = cv2.dnn.readNet("yolov3.weights", "yolov3.cfg")
+net = cv2.dnn.readNet("yolov3-tiny-obj_last.weights", "yolov3-tiny-obj.cfg")
 classes = []
-with open("coco.names", "r") as f:
+with open("obj.names", "r") as f:
     classes = [line.strip() for line in f.readlines()]
 layer_names = net.getLayerNames()
 outputLayers = [layer_names[i[0] - 1] for i in net.getUnconnectedOutLayers()]
@@ -76,7 +76,7 @@ while True:
 	cv2.imshow("Image",frame)
 	key = cv2.waitKey(1) #wait 1ms the loop will start again and we will process the next frame
     
-	if cv2.waitKey(0) & 0xFF == ord('q'):
+	if cv2.waitKey(1) & 0xFF == ord('q'):
 		break
     
 cap.release()    
